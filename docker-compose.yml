@@ -6,6 +6,16 @@ services:
     working_dir: /app
     command: bash -c "uv sync && bash"
 
+  python-dev:
+    build: .
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: sleep infinity
+    stdin_open: true
+    tty: true
+    profiles: ["dev"]
+
   jupyter:
     build: .
     ports:

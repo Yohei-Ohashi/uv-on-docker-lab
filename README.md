@@ -20,13 +20,13 @@ docker compose --profile jupyter up
 ### Cursor + リモートウィンドウ開発
 ```bash
 # 開発用コンテナを起動（バックグラウンド）
-docker compose run -d --name python-dev python sleep infinity
+docker compose --profile dev up -d python-dev
 
 # Cursorでコンテナにアタッチ
 # Command Palette → "Dev Containers: Attach to Running Container" → python-dev
 
-# 開発終了後、コンテナ削除
-docker rm -f python-dev
+# 開発終了後、コンテナ停止
+docker compose --profile dev down
 ```
 
 ### 本番環境（Windows Server 2016）
