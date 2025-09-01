@@ -12,9 +12,30 @@ docker compose run --rm python
 # Pythonスクリプト実行
 docker compose run --rm python uv run python your_script.py
 
+# 環境変数の設定（初回のみ）
+cp .env.example .env
+# .envファイルを編集してJUPYTER_TOKENを設定
+
 # Jupyter起動
 docker compose --profile jupyter up
-# → http://localhost:8888/?token=simple-token-123
+
+# ブラウザでアクセス
+# → http://localhost:8888/?token=YOUR_TOKEN
+# 
+# 注意事項:
+# - YOUR_TOKENは.envファイルで設定したJUPYTER_TOKENの値
+# - 初回アクセス時はトークンの入力が必要
+# - ブラウザのブックマークに保存すると便利
+# - コンテナ停止: Ctrl+C または docker compose --profile jupyter down
+# 
+# Jupyter Labの使い方:
+# - 左側のファイルブラウザでプロジェクトファイルを確認
+# - 「+」ボタンで新しいノートブックを作成
+# - 右上の「Python 3」でカーネルを選択
+# - コードセルでPythonコードを実行
+# - ファイルは自動的にホストと同期される
+
+
 ```
 
 ### Cursor + リモートウィンドウ開発
@@ -46,6 +67,7 @@ uv run python your_script.py
 - `pyproject.toml` - uv依存関係管理
 - `Dockerfile` - Docker環境
 - `docker-compose.yml` - 開発環境
+- `.env.example` - 環境変数の設定例
 - `README.md` - このファイル
 
 以上！

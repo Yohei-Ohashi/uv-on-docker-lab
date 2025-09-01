@@ -19,10 +19,11 @@ services:
   jupyter:
     build: .
     ports:
-      - "8888:8888"
+      - "${JUPYTER_PORT:-8888}:8888"
     volumes:
       - .:/app
     environment:
-      - JUPYTER_TOKEN=simple-token-123
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
+      - JUPYTER_PASSWORD=${JUPYTER_PASSWORD:-}
     command: uv run jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --notebook-dir=/app
     profiles: ["jupyter"]
